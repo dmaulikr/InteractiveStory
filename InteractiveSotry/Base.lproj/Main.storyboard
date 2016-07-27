@@ -29,6 +29,9 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iL1-bN-QJ5">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="APy-E7-6xj"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,7 +50,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="LyV-QM-pP2"/>
                     <connections>
-                        <outlet property="nameTextField" destination="iL1-bN-QJ5" id="Yyd-Jy-QLb"/>
+                        <outlet property="nameTextField" destination="iL1-bN-QJ5" id="sUX-fg-RBg"/>
+                        <outlet property="textFieldBottomConstraint" destination="EHr-DK-Z1u" id="eYn-dM-Gco"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
