@@ -10,12 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    enum Error: ErrorProtocol {
+        case NoName
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let story = Page(story: .TouchDown)
-        story.firstChoice = (title: "some Title", page: Page(story: .Droid))
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,8 +30,20 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "startAdventure" {
-            if let pageController = segue.destinationViewController as? PageController {
-                pageController.page = Adventure.story
+            
+            
+            do {
+                if let name = nameTextField.text {
+                    if name == "" {
+                        throw Error.NoName
+                    }
+                    if let pageController = segue.destinationViewController as? PageController {
+                        pageController.page = Adventure.story(name: name)
+                    }
+                }
+            }
+            catch {
+                
             }
         }
     }
