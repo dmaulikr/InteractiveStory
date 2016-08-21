@@ -32,7 +32,7 @@ class PageController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        view.backgroundColor = .white()
+        view.backgroundColor = UIColor.white
         
         if let page = page {
             artwork.image = page.story.artwork

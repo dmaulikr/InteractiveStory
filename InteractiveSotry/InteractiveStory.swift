@@ -49,7 +49,7 @@ extension Story {
         default: fileName = "PageTurn"
         }
         
-        let path = Bundle.main.pathForResource(fileName, ofType: "wav")!
+        let path = Bundle.main.path(forResource: fileName, ofType: "wav")!
         return NSURL(fileURLWithPath: path)
         
     }

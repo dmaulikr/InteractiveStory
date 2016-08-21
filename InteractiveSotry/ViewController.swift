@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    enum Error: ErrorProtocol {
+    enum ErrorType: Error {
         case NoName
     }
     
@@ -28,19 +28,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "startAdventure" {
            do {
                 if let name = nameTextField.text {
                     if name == "" {
-                        throw Error.NoName
+                        throw ErrorType.NoName
                     }
-                    if let pageController = segue.destinationViewController as? PageController {
+                    if let pageController = segue.destination as? PageController {
                         pageController.page = Adventure.story(name: name)
                     }
                     
                 }
-            } catch Error.NoName {
+            } catch ErrorType.NoName {
                 let alertController = UIAlertController(title: "Name Not Provided", message: "Provide a name to start your story!", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(action)
@@ -55,7 +55,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardWillShow(notification: NSNotification) {
        if let userInfoDict = notification.userInfo, let keyboardFrameValue = userInfoDict[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardFrame = keyboardFrameValue.cgRectValue()
+            let keyboardFrame = keyboardFrameValue.cgRectValue
             
             UIView.animate(withDuration: 0.8) {
                 self.textFieldBottomConstraint.constant = keyboardFrame.size.height + 10
